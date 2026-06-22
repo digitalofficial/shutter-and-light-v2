@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-dark text-cream font-sans;
+  }
+
+  ::selection {
+    background: rgba(197, 165, 90, 0.3);
+    color: #FAF9F6;
+  }
+}
+
+/* ─── Masonry Grid ─── */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* ─── Cinematic Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-slow {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.reveal-slow.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-fade.revealed {
+  opacity: 1;
+}
+
+/* ─── Full-Bleed Image Placeholders ─── */
+.image-placeholder {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    145deg,
+    #1A1A1A 0%,
+    #2A2A2A 30%,
+    #1F1F1F 60%,
+    #252525 100%
+  );
+}
+
+.image-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(197, 165, 90, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.image-placeholder::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(184, 176, 168, 0.2);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.image-placeholder-clean::after {
+  display: none;
+}
+
+/* ─── Editorial Pull Quote ─── */
+.pull-quote {
+  @apply relative font-serif italic;
+  font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+  line-height: 1.3;
+  color: #FAF9F6;
+}
+
+.pull-quote::before {
+  content: "\201C";
+  @apply absolute font-serif not-italic text-gold;
+  font-size: 5em;
+  line-height: 1;
+  top: -0.15em;
+  left: -0.05em;
+  opacity: 0.3;
+}
+
+/* ─── Film Grain Overlay ─── */
+.film-grain {
+  position: relative;
+}
+
+.film-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  z-index: 1;
+}
+
+/* ─── Elegant Line Dividers ─── */
+.line-divider {
+  @apply relative;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(184, 176, 168, 0.3) 20%,
+    rgba(184, 176, 168, 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.line-divider-gold {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(197, 165, 90, 0.4) 20%,
+    rgba(197, 165, 90, 0.4) 80%,
+    transparent 100%
+  );
+}
+
+/* ─── Gold Accent Underline ─── */
+.gold-underline {
+  @apply relative inline-block;
+}
+
+.gold-underline::after {
+  content: "";
+  @apply absolute bottom-0 left-0 w-full;
+  height: 1px;
+  background: linear-gradient(90deg, #C5A55A, transparent);
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-slow,
+  .reveal-fade {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8B0A8;
+}
