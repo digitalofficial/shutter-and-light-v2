@@ -24,8 +24,14 @@ export default function Home() {
     <>
       {/* ─── Hero ─── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden film-grain">
-        <div className="absolute inset-0 image-placeholder image-placeholder-clean" />
-        <div className="absolute inset-0 bg-dark/55" />
+        {/* Background image */}
+        <img
+          src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1600&h=900&fit=crop"
+          alt="Photographer holding camera in dramatic lighting"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/70 via-[#000000]/50 to-[#000000]/80" />
 
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
           <Reveal variant="slow">
