@@ -31,7 +31,7 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/70 via-[#000000]/50 to-[#000000]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/50 via-[#000000]/30 to-[#000000]/65" />
 
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
           <Reveal variant="slow">
